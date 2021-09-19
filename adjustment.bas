@@ -1,15 +1,5 @@
 Option Explicit
 
-
-
-Sub MySub()
-
-    Dim uni As Uniform: Set uni = New Uniform
-    uni.Initialize Sheet1.ListObjects(1).ListRows(1).Range
-
-
-End Sub
-
 Sub search()
 
     'テーブルを変数に格納
@@ -25,20 +15,22 @@ Sub search()
 
         For a = 2 To .ListRows.Count + 1
             If .Range(a, 6).Value = "不足" And .Range(a, 11) = Empty Then
-                'MsgBox .Range(a, 5) + "は不足しています。"
 
                 For b = 2 To .ListRows.Count + 1
                     '早期離脱しつつ検索
                     If _
-                        .Range(b, 5).Value <> .Range(a, 5).Value And _
-                        .Range(b, 2).Value = .Range(a, 2).Value And _
-                        .Range(b, 3).Value = .Range(a, 3).Value And _
-                        .Range(b, 4).Value = .Range(a, 4).Value _
+                    .Range(b, 11).Value = Empty And _
+                    .Range(b, 5).Value <> .Range(a, 5).Value And _
+                    .Range(b, 2).Value = .Range(a, 2).Value And _
+                    .Range(b, 3).Value = .Range(a, 3).Value And _
+                    .Range(b, 4).Value = .Range(a, 4).Value _
                     Then
                     
-                    'MsgBox .Range(a, 5) + "には" + .Range(b, 5) + "から移動します。"
-                    .Range(a, 11).Value = .Range(b, 5).Value + "から"
-                    .Range(b, 11).Value = .Range(a, 5).Value + "へ"
+                        .Range(a, 11).Value = .Range(b, 5).Value + "から"
+                        .Range(b, 11).Value = .Range(a, 5).Value + "へ"
+                        .Range(a, 12).Value = a
+                        .Range(b, 12).Value = a
+                        Exit For
                     End If
                 Next b
             End If
@@ -55,7 +47,8 @@ Sub search()
         Next c
         
     End With
-    '一行目から順に、EODが不足 AND PassがNull の行を探す
-    
+
 
 End Sub
+
+
