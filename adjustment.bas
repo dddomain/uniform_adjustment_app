@@ -1,6 +1,6 @@
 Option Explicit
 
-Sub search()
+Sub Planning()
 
     'テーブルを変数に格納
     Dim UniformList As ListObject: Set UniformList = Sheet1.ListObjects(1)
@@ -9,9 +9,9 @@ Sub search()
     'uni.Initialize UniformList.ListRows(1).Range
     
     With UniformList
-        Dim a As Long
-        Dim b As Long
-        Dim c As Long
+        Dim a As integer
+        Dim b As integer
+        Dim c As integer
 
         For a = 2 To .ListRows.Count + 1
             If .Range(a, 6).Value = "不足" And .Range(a, 11) = Empty Then
@@ -47,7 +47,6 @@ Sub search()
         Next c
         
     End With
-
 
 End Sub
 
